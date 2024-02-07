@@ -1,0 +1,10 @@
+body {
+    background-color: hsl(0, 0%, 96%);
+   
+  }
+
+  .workerauthentication{
+    background-image: url('../assets/vivid-blurred-colorful-wallpaper-background.jpg');
+    background-position: center;
+    background-size: cover;
+  }

@@ -1,0 +1,9 @@
+body {
+    background-color: hsl(0, 0%, 96%);
+  }
+
+.adminauthentication{
+    background-image: url('../assets/1111767_589.jpg');
+    background-position: center;
+    background-size: cover;
+ }

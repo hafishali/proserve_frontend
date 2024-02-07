@@ -1,0 +1,10 @@
+body {
+    background-color: hsl(0, 0%, 96%);
+    
+  }
+
+  .userauthentication{
+    background-image: url('../assets/6600674_3334896.jpg');
+    background-position: center;
+    background-size: cover;
+  }

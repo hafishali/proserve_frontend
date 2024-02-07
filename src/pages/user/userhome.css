@@ -1,0 +1,32 @@
+.usrhome{
+    height: 100vh;
+    background-image: url(../assets/model-1.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+@media screen and (min-width: 601px) {
+    .welcome {
+      font-size: 80px;
+    }
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+   .welcome {
+      font-size: 30px;
+    }
+  }
+  @media screen and (min-width: 601px) {
+    .welpara {
+      font-size: 20px;
+    }
+  }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 600px) {
+   .welpara {
+      font-size: 8px;
+    }
+  }

@@ -1,0 +1,22 @@
+body{
+    background-color: #FFFDFB;
+}
+
+.user_banner{
+    height: 250px;
+    background-image: url(../assets/3042.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.mission img{
+    height: 300px;
+}
+.worker_banner{
+    height: 250px;
+    background-image: url(../assets/banner-2.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
