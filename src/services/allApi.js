@@ -44,7 +44,7 @@ export const allworkers=async(reqHeader)=>{
 
 // admin:approve worker
 
-export const approveworkerApi=async(workerid,reqHeader,reqbody)=>{
+export const approveworkerApi=async(workerid,reqbody)=>{
     
-    return await commonApi('PUT',`${base_url}/admin/approve/${workerid}`,reqHeader,reqbody)
+    return await commonApi('PUT',`${base_url}/admin/approve/${workerid}`,reqbody)
 }
