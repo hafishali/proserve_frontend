@@ -11,10 +11,18 @@ import carpenter from '../assets/carpenter.jpg'
 import gardener from '../assets/gardener.jpg'
 import pestcontroller from '../assets/pest controller.jpg'
 import Footer from '../../components/Footer';
+import { Link } from 'react-router-dom';
 
 function Userhome() {
   const users=JSON.parse(sessionStorage.getItem('user'));
   const username=users.name
+
+  const PAINTER='Painter'
+  const CARPENTER='Carpenter'
+  const PLUMBER='Plumber'
+  const GARDENER='Gardner'
+  const PESTCONTROLLER='Pestcontroller'
+  const ELECTRICIAN='Electrician'
  
  console.log(username)
   return (
@@ -51,7 +59,7 @@ function Userhome() {
                   <Card.Body>
                     <Card.Title className='text-center' >PAINTER</Card.Title>
 
-                    <div className='d-flex justify-content-center'><Button variant="primary">BOOK</Button></div>
+                    <div className='d-flex justify-content-center'><Link to={`/booking?worker=${PAINTER}`}><Button variant="primary">BOOK</Button></Link></div>
                   </Card.Body>
                 </Card>
               </div>
@@ -64,7 +72,7 @@ function Userhome() {
                   <Card.Body>
                     <Card.Title className='text-center'>ELECTRICAIN</Card.Title>
 
-                    <div className='d-flex justify-content-center'><Button variant="primary">BOOK</Button></div>
+                    <div className='d-flex justify-content-center'><Link to={`/booking?worker=${ELECTRICIAN}`}><Button variant="primary">BOOK</Button></Link></div>
 
                   </Card.Body>
                 </Card>
@@ -84,7 +92,7 @@ function Userhome() {
                   <Card.Body>
                     <Card.Title className='text-center'>PLUMBER</Card.Title>
 
-                    <div className='d-flex justify-content-center'><Button variant="primary">BOOK</Button></div>
+                    <div className='d-flex justify-content-center'><Link to={`/booking?worker=${PLUMBER}`}><Button variant="primary">BOOK</Button></Link></div>
                   </Card.Body>
                 </Card>
 
@@ -106,7 +114,7 @@ function Userhome() {
                   <Card.Body>
                     <Card.Title className='text-center'>CARPENTER</Card.Title>
 
-                    <div className='d-flex justify-content-center'><Button variant="primary">BOOK</Button></div>
+                    <div className='d-flex justify-content-center'><Link to={`/booking?worker=${CARPENTER}`}><Button variant="primary">BOOK</Button></Link></div>
 
                   </Card.Body>
                 </Card>
@@ -126,7 +134,7 @@ function Userhome() {
                   <Card.Body>
                     <Card.Title className='text-center'>GARDENER</Card.Title>
 
-                    <div className='d-flex justify-content-center'><Button variant="primary">BOOK</Button></div>
+                    <div className='d-flex justify-content-center'><Link to={`/booking?worker=${GARDENER}`}><Button variant="primary">BOOK</Button></Link></div>
 
                   </Card.Body>
                 </Card>
@@ -141,7 +149,7 @@ function Userhome() {
                   <Card.Body>
                     <Card.Title className='text-center'>PEST CONTROLLER</Card.Title>
 
-                    <div className='d-flex justify-content-center'><Button variant="primary">BOOK</Button></div>
+                    <div className='d-flex justify-content-center'><Link to={`/booking?worker=${PESTCONTROLLER}`}><Button variant="primary">BOOK</Button></Link></div>
 
                   </Card.Body>
                 </Card>

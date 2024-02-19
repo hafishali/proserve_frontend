@@ -186,12 +186,12 @@ function Proauth({ proregister }) {
                                     <MDBRow>
                                         <MDBCol col='6'>
                                             <select class="form-select" aria-label="Choose your district" onChange={(e) => setWorker({ ...worker, job: e.target.value })}>
-                                                <option selected disabled >Choose your district</option>
+                                                <option selected disabled >Choose your job</option>
                                                 <option value="Plumber">Plumber</option>
                                                 <option value="Electrician">Electrician</option>
                                                 <option value="Painter">Painter</option>
                                                 <option value="Carpenter">Carpenter</option>
-                                                <option value="Pest controller">Pest controller</option>
+                                                <option value="Pest controller">Pestcontroller</option>
                                                 <option value="Gardner">Gardner</option>
                                             </select>
                                         </MDBCol>
