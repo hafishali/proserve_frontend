@@ -6,15 +6,31 @@ import Modal from 'react-bootstrap/Modal';
 import worker_img from '../assets/Plumber.jpg';
 import { useParams } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import { GetAllworkers } from '../../services/allApi';
+import { GetAllworkers, bookApi } from '../../services/allApi';
 import { base_url } from '../../services/baseurl';
 import empty from '../assets/nothing.jpg'
+import Swal from 'sweetalert2'
 
 function Bookworker(props) {
   const [modalShow, setModalShow] = useState(false);
   const [workers, setWorkers] = useState([])
   const [selectedWorker, setSelectedWorker] = useState(null);
   const [search,setSearch]=useState("")
+  const [book,setBook]=useState({
+    worker_name:"",
+    job:"",
+    name:"",
+    phone:"",
+    city:"",
+    date:"",
+    district:"",
+    description:"",
+    address:"",
+    status:false,
+    workerId:""
+ 
+  })
+  console.log(book)
 
   const [searchParams] = useSearchParams();
     const worker = searchParams.get('worker');
@@ -61,8 +77,69 @@ function Bookworker(props) {
     //   const searchResults = workers.filter(item => item.district.toLowerCase() === search.toLowerCase());
     //   console.log(searchResults);
     // };
+    useEffect(() => {
+      if (selectedWorker) {
+        setBook({
+          ...book,
+          worker_name: selectedWorker.name,
+          job: selectedWorker.job
+        });
+      }
+    }, [selectedWorker]);
   
     
+    const handleBook=async(workerid)=>{
+      console.log(workerid)
+      setBook({ ...book, workerId:workerid })
+      console.log(`lmlml${book}`)
+      const {worker_name,job,name,phone,city,date,district,description,address,workerId}=book
+      if(!worker_name || !job || !name || !phone ||!city ||!date ||!district ||!description ||!address ||!workerId ){
+        Swal.fire({
+          title: 'oops',
+          text: 'Please fill the form completley',
+          icon: 'warning'
+      })
+
+      }
+      else{
+        const token = sessionStorage.getItem("token")
+        const reqHeader = {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+        const result = await bookApi(book,reqHeader)
+        console.log(result.data)
+        if (result.status === 200) {
+            // alert('Your registration is successfull')
+            Swal.fire({
+                title: "Successful",
+                text: "Your Booking Request has been sent",
+                icon: "success"
+            });
+            setBook({
+              worker_name:"",
+              job:"",
+              name:"",
+              phone:"",
+              city:"",
+              date:"",
+              district:"",
+              description:"",
+              address:"",
+              status:false,
+            
+           
+            })
+           
+          
+        }
+        else {
+            alert(result.response.data)
+        }
+
+      }
+
+    }
     
 
   return (
@@ -134,27 +211,32 @@ function Bookworker(props) {
         <Modal.Body>
           <h4 className='text-center'>BOOK {selectedWorker && selectedWorker.name} </h4>
           <Form>
-            <label htmlFor="name">Full Name</label>
-            <input id='name' type="text"  className='form-control mt-2' placeholder='Enter your Name' />
+          <label htmlFor="name">worker Name</label>
+            <input id='name' type="text" value={selectedWorker && selectedWorker.name} disabled   className='form-control mt-2' placeholder='Enter worker Name' />
+            <label htmlFor="name">job</label>
+            <input id='name' type="text" value={selectedWorker && selectedWorker.job} disabled className='form-control mt-2' placeholder='Enter worker Name' />
+            
+            <label htmlFor="name">Full Name(your)</label>
+            <input id='name' type="text"  onChange={(e) => setBook({ ...book, name: e.target.value })} className='form-control mt-2' placeholder='Enter worker Name' />
             <label htmlFor="phone">Phone Number</label>
-            <input id='phone' type="text" className='form-control mt-2' placeholder='Enter your Phone Number' />
+            <input id='phone' type="text" className='form-control mt-2' onChange={(e) => setBook({ ...book, phone: e.target.value })}  placeholder='Enter your Phone Number' />
             <label htmlFor="city">City</label>
-            <input id='city' type="text" className='form-control mt-2 ' placeholder='Enter your City' />
+            <input id='city' type="text" className='form-control mt-2 ' onChange={(e) => setBook({ ...book, city: e.target.value })}  placeholder='Enter your City' />
             <label htmlFor="city">Date for Booking</label>
-            <input id='city' type="date" className='form-control mt-2 '  />
+            <input id='city' type="date" onChange={(e) => setBook({ ...book, date: e.target.value })}  className='form-control mt-2 '  />
 
             <label htmlFor="district">District</label>
-            <Form.Select id='district' aria-label="Default select example" className='mt-2'>
+            <Form.Select id='district' onChange={(e) => setBook({ ...book, district: e.target.value })}  aria-label="Default select example" className='mt-2'>
               
-              <option value="1">Palakkad</option>
-              <option value="2">Kozhikkode</option>
-              <option value="3">Thrissur</option>
+              <option value="Palakkad">Palakkad</option>
+              <option value="Kozhikkode">Kozhikkode</option>
+              <option value="Thrissur">Thrissur</option>
             </Form.Select>
             
             {/* <label htmlFor="requirement">Requirement Detailas</label> */}
-            <textarea className='mt-2 form-control ' name="" id="requirement" cols="60" rows="3" placeholder='Description of your work requirments'></textarea>
+            <textarea onChange={(e) => setBook({ ...book, description: e.target.value })}  className='mt-2 form-control ' name="" id="requirement" cols="60" rows="3" placeholder='Description of your work requirments'></textarea>
 
-            <textarea className='mt-2 form-control' name="" id="requirement" cols="60" rows="3" placeholder='Enter your  address'></textarea>
+            <textarea onChange={(e) => setBook({ ...book, address: e.target.value })} className='mt-2 form-control' name="" id="requirement" cols="60" rows="3" placeholder='Enter your  address'></textarea>
             
             
           </Form>
@@ -162,7 +244,8 @@ function Bookworker(props) {
 
         </Modal.Body>
         <Modal.Footer>
-          <button className='btn btn-success'>BOOK NOW</button>
+        <button className='btn btn-success' onClick={() => handleBook(selectedWorker._id)}>BOOK NOW</button>
+
           <Button onClick={() => setModalShow(false)}>Close</Button>
         </Modal.Footer>
       </Modal>

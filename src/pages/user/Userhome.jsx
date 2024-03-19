@@ -12,6 +12,7 @@ import gardener from '../assets/gardener.jpg'
 import pestcontroller from '../assets/pest controller.jpg'
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
+import Header from '../../components/Header';
 
 function Userhome() {
   const users=JSON.parse(sessionStorage.getItem('user'));
@@ -27,6 +28,7 @@ function Userhome() {
  console.log(username)
   return (
     <>
+    <Header/>
       <section >
         <div className='usrhome d-flex align-items-center '>
           <Row>

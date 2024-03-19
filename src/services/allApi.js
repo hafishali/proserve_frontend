@@ -44,8 +44,7 @@ export const allworkers=async(reqHeader)=>{
 
 // admin:approve worker
 
-export const approveworkerApi=async(workerid,reqbody)=>{
-    
+export const approveworkerApi=async(workerid,reqbody)=>{ 
     return await commonApi('PUT',`${base_url}/admin/approve/${workerid}`,reqbody)
 }
 
@@ -54,3 +53,39 @@ export const approveworkerApi=async(workerid,reqbody)=>{
 export const GetAllworkers=async(reqHeader)=>{
     return await commonApi('GET',`${base_url}/user/viewworkers`,"",reqHeader)
 }
+
+// user:booking
+
+export const bookApi=async(reqBody,reqHeader)=>{
+    return await commonApi('POST',`${base_url}/user/book`,reqBody,reqHeader)
+}
+
+// worker:viewbooking
+
+export const viewBookings=async(reqHeader)=>{
+    return await commonApi('GET',`${base_url}/worker/viewbookings`,"",reqHeader)
+}
+
+// worker:approve booking
+
+export const approveBookingApi=async(bookingid,reqbody)=>{ 
+    return await commonApi('PUT',`${base_url}/booking/approve/${bookingid}`,reqbody)
+}
+
+// user:booking history
+
+export const viewbookingHistory=async(reqHeader)=>{
+    return await commonApi('GET',`${base_url}/user/viewbookings`,"",reqHeader)
+}
+
+// user:cancel booking
+
+export const cancelbookApi=async(bookingId,reqHeader)=>{
+    // projects id passed as path parameter
+    return await commonApi('DELETE',`${base_url}/booking/cancel/${bookingId}`,{},reqHeader)
+}
+
+
+
+
+
