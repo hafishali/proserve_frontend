@@ -13,6 +13,7 @@ import Workerprofile from './pages/Professional/Workerprofile';
 import Viewbooking from './pages/Professional/Viewbooking';
 import Adminhome from './pages/Admin/Adminhome';
 import Adviewworker from './pages/Admin/Adviewworker';
+import Viewusers from './pages/Admin/Viewusers';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path='/viewbooking' element={ <Viewbooking/>}></Route>
         <Route path='/adminhome' element={ <Adminhome adhome/>}></Route>
         <Route path='/viewworker' element={ <Adviewworker/>}></Route>
+        <Route path='/admin/viewusers' element={ <Viewusers/>}></Route>
 
       </Routes>
      

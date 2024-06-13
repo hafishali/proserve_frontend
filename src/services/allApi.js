@@ -72,6 +72,7 @@ export const approveBookingApi=async(bookingid,reqbody)=>{
     return await commonApi('PUT',`${base_url}/booking/approve/${bookingid}`,reqbody)
 }
 
+
 // user:booking history
 
 export const viewbookingHistory=async(reqHeader)=>{
@@ -83,6 +84,13 @@ export const viewbookingHistory=async(reqHeader)=>{
 export const cancelbookApi=async(bookingId,reqHeader)=>{
     // projects id passed as path parameter
     return await commonApi('DELETE',`${base_url}/booking/cancel/${bookingId}`,{},reqHeader)
+}
+
+
+// admin:get all users
+
+export const viewallusers=async(reqHeader)=>{
+    return await commonApi('GET',`${base_url}/admin/getallusers`,"",reqHeader)
 }
 
 

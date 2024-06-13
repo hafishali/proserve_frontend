@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Header from '../../components/Header';
+import Proheader from './Proheader';
 
 function Profhome() {
 
@@ -19,7 +19,7 @@ function Profhome() {
   
   return (
     <>
-    <Header/>
+    <Proheader/>
     <section className='prohome'>
       
       <div className=' prohome d-flex align-items-center '>
@@ -27,15 +27,16 @@ function Profhome() {
             <Col lg={6} sm={12}>
               <div className='  text-light ms-2'>
                 <p className='welcome fw-bold'>Welcome  <span className='text-dark'>{workername}</span></p>
+              
                
-                <Link to={'/profile'}><button className='btn btn-primary'>Your Profile</button></Link>
+                <Link to={'/profile'}><button className='btn btn-primary'>view more</button></Link>
 
               </div>
             </Col>
             <Col lg={6} sm={12} >
 <div className='d-flex justify-content-center align-items-center flex-column'>
                 <img className='img-fluid' width={'700px'} src={profimage} alt="" />
-                <Link to={'/booking'}> <button className='btn btn-primary'>Bookings</button></Link>
+                {/* <Link to={'/booking'}> <button className='btn btn-primary'>Bookings</button></Link> */}
                
   
 </div>            </Col>
@@ -49,6 +50,10 @@ function Profhome() {
       
 
     </section>
+    <section>
+      
+    </section>
+
     <section>
     <div className='d-flex justify-content-center mb-5 mt-5'>
     <Row>

@@ -156,79 +156,68 @@ function Adviewworker() {
 
   return (
     <>
-      <h2 className='text-center mt-5 fw-bold'>Approve <span className='text-success'>profiles</span></h2>
-
+      <h2 className='text-center mt-5 fw-bold'>Manage <span className='text-success'>Workers</span></h2>
 
       <Row>
-
-
-        {workers?.length > 0 ? (
-          <div>
-            {workers.map((item) => (
-              <Col lg={6} md={6} sm={12}>
-                <Card style={{ width: '25rem' }} className='m-3'>
-                  <Card.Body>
-                    <Card.Title className='text-center fw-bold'></Card.Title>
-                    <Card.Text className='mt-3'>
-
-                      <h4 className='text-center fw-bold'>{item.name}</h4>
-
-                      <div className='d-flex justify-content-center'> <Card.Img variant="top" className='img-fluid' style={{ width: '150px', height: '150px', borderRadius: '50%' }} src={`${base_url}/uploads/${item.image}`} /></div>
-
-
-                      <Card.Text ><span className='fw-bold' >JOB</span>:{item.job}</Card.Text>
-                      <hr />
-                      <Card.Text ><span className='fw-bold' >COWORKERS</span>:{item.coworkers}</Card.Text>
-                      <hr />
-                      <Card.Text ><span className='fw-bold' >DAILY WAGE</span>:{item.dailywage}</Card.Text>
-                      <hr />
-                      <Card.Text ><span className='fw-bold' >CITY</span>:{item.city}</Card.Text>
-                      <hr />
-                      <Card.Text ><span className='fw-bold' >DISTRICT</span>:{item.district}</Card.Text>
-                      <hr />
-                      <Card.Text ><span className='fw-bold'>CONTACT</span>:{item.phone}</Card.Text>
-
-                    </Card.Text>
-                    <div className='d-flex justify-content-center'>
-                      <Button variant="success" onClick={() => setOpen(!open)}>
-                        <i className="fa-solid fa-arrow-up-from-bracket fa-rotate-180" style={{ color: "#d5d6d8" }}></i>
-                      </Button>
-                    </div>
-                    <Collapse in={open}>
-                      <div>
-                        <hr className='text-success' />
-                        <div>
-                        
-                          {item?.status === true ? (
-                            <div className='d-flex justify-content-center'>
-                            <button className='btn btn-danger' onClick={() => handlereject(item._id)}>REJECT</button>
-                          </div>
-                            
-                          ) : (
-                            <div className='d-flex justify-content-center'>
-                              <button className='btn btn-success mb-3' onClick={() => handleapprove(item._id)}>APPROVE</button>
-                            </div>
-                            
-                          )}
+      {workers?.length > 0 ? (
+        workers.map((item, index) => (
+          <Col key={index} lg={4} md={6} sm={12} className='mb-4'>
+            <Card style={{ width: '100%' }} className='m-3'>
+              <Card.Body>
+                <Card.Title className='text-center fw-bold'></Card.Title>
+                <Card.Text className='mt-3'>
+                  <h4 className='text-center fw-bold'>{item.name}</h4>
+                  <div className='d-flex justify-content-center'>
+                    <Card.Img 
+                      variant="top" 
+                      className='img-fluid' 
+                      style={{ width: '150px', height: '150px', borderRadius: '50%' }} 
+                      src={`${base_url}/uploads/${item.image}`} 
+                    />
+                  </div>
+                  <Card.Text><span className='fw-bold'>JOB</span>: {item.job}</Card.Text>
+                  <hr />
+                  <Card.Text><span className='fw-bold'>COWORKERS</span>: {item.coworkers}</Card.Text>
+                  <hr />
+                  <Card.Text><span className='fw-bold'>DAILY WAGE</span>: {item.dailywage}</Card.Text>
+                  <hr />
+                  <Card.Text><span className='fw-bold'>CITY</span>: {item.city}</Card.Text>
+                  <hr />
+                  <Card.Text><span className='fw-bold'>DISTRICT</span>: {item.district}</Card.Text>
+                  <hr />
+                  <Card.Text><span className='fw-bold'>CONTACT</span>: {item.phone}</Card.Text>
+                </Card.Text>
+                <div className='d-flex justify-content-center'>
+                  <Button variant="success" onClick={() => setOpen(!open)}>
+                    <i className="fa-solid fa-arrow-up-from-bracket fa-rotate-180" style={{ color: "#d5d6d8" }}></i>
+                  </Button>
+                </div>
+                <Collapse in={open}>
+                  <div>
+                    <hr className='text-success' />
+                    <div>
+                      {item?.status === true ? (
+                        <div className='d-flex justify-content-center'>
+                          <button className='btn btn-danger' onClick={() => handlereject(item._id)}>REJECT</button>
                         </div>
-
-                      </div>
-                    </Collapse>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </div>
-        ) : (
-          <div>
-            <p>no workers</p>
-          </div>
-        )}
-
-
-
-
-      </Row>
+                      ) : (
+                        <div className='d-flex justify-content-center'>
+                          <button className='btn btn-success mb-3' onClick={() => handleapprove(item._id)}>APPROVE</button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Collapse>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))
+      ) : (
+        <div>
+          <p>No workers</p>
+        </div>
+      )}
+    </Row>
     </>
   )
 }
