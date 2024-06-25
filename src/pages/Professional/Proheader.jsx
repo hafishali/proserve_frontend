@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Proheader() {
   return (
@@ -15,13 +16,18 @@ function Proheader() {
        
       
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#aboutus">BOOKINGS</a>
+           <Link to={'/viewbooking'} style={{textDecoration:'none'}} ><a class="nav-link text-dark" href="">BOOKINGS</a></Link> 
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#ourmission">PROFILE</a>
+            <Link to={'/profile'} style={{textDecoration:'none'}} ><a class="nav-link text-dark" href="">PROFILE</a></Link>
           </li>
+          <li class="nav-item">
+          <a class="nav-link text-dark" href="#history">BOOKING HISTORY</a>
+          </li>
+
+          
          
-          <li class="nav-item dropdown">
+          {/* <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">BOOKING HISTORY</a>
             <div class="dropdown-menu ">
               <a class="dropdown-item " href="#">APPROVED</a>
@@ -31,7 +37,7 @@ function Proheader() {
              
             </div>
            
-          </li>
+          </li> */}
        
       </ul>
     

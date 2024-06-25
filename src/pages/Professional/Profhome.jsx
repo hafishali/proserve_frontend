@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import './profhome.css'
 import { Row,Col } from 'react-bootstrap';
@@ -9,13 +9,36 @@ import Footer from '../../components/Footer';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Proheader from './Proheader';
+import bookimg from '../assets/appointment-booking-with-smartphone.png'
+import profileimg from '../assets/hands-with-cv-resume-clip-art.png'
+import apprvimg from '../assets/approved-rejected-rubber-stamps-set-two.png'
+import rejectimg from '../assets/rejected-rubber-stamps-set-two.png'
+
+
 
 function Profhome() {
 
-  const worker=JSON.parse(sessionStorage.getItem('user'));
-  const workername=worker.name
- 
- console.log(workername)
+  const[workerdts,setWorkerdts]=useState([])
+
+
+  useEffect(()=>{
+    if(sessionStorage.getItem('user')){
+      const worker=JSON.parse(sessionStorage.getItem('user'));
+      setWorkerdts(worker)
+    
+
+
+    }
+    else{
+      console.log('worker is not logined yet')
+    }
+  },[])
+  console.log(workerdts)
+
+  const accepted='true'
+  const rejected='false'
+
+  
   
   return (
     <>
@@ -26,7 +49,7 @@ function Profhome() {
           <Row>
             <Col lg={6} sm={12}>
               <div className='  text-light ms-2'>
-                <p className='welcome fw-bold'>Welcome  <span className='text-dark'>{workername}</span></p>
+                <p className='welcome fw-bold'>Welcome  <span className='text-dark'>{workerdts.name}</span></p>
               
                
                 <Link to={'/profile'}><button className='btn btn-primary'>view more</button></Link>
@@ -50,34 +73,131 @@ function Profhome() {
       
 
     </section>
+    <section >
+      <div>
+        <h1 className='fw-bold text-center mt-5'><span className='text-success'>Your</span> Profile</h1>
+        <div className='d-flex justify-content-center '>
+          <img width={'350px'} className='img-fluid' src={profileimg} alt="" />
+         
+
+        </div>
+        {workerdts.name?
+        
+        
+        <div>
+          <div>
+         {workerdts.status===''?
+          <div>
+          <h2 className='text-center fw-bold text-warning '>Pending</h2>
+          <p className='text-center'>Your profile approval is kept on <span className='text-warning'>pending</span> by Admin</p>
+
+          </div>
+          :   <div>
+          {workerdts.status===true?
+          <div>
+          <h2 className='text-center fw-bold text-success '>approved</h2>
+          <p className='text-center'>Your profile has been <span className='text-success'>approved</span> by Admin</p>
+
+          </div>
+          : <div>
+          <h2 className='text-center fw-bold text-danger '>Rejected</h2>
+          <p className='text-center'>Your profile has been <span className='text-danger'>rejected</span> by Admin</p>
+
+          </div> }
+
+          </div>}
+          <div>
+            <Link to={'/profile'}>
+            <p className='text-center'> <span className='fw-bold'>View </span> and <span className='fw-bold'>Update</span>  your profile</p> 
+            </Link>
+            
+          </div>
+
+          </div>
+        
+         
+        
+
+        </div>
+        : <div>
+          <h3 className='text-danger text-center'>Please <span className='fw-bold'>Login....</span> </h3>
+          <div className='d-flex justify-content-center'>
+          <Link to={'/pofessionallogin'}><button className='btn btn-success '>LOGIN </button></Link>
+
+          </div>
+        </div> }
+        
+        
+
+      </div>
+    </section>
     <section>
+      <div className='mt-5'>
+        <h1 className='fw-bold text-center'> <span className='text-success'>YOUR</span> BOOKINGS</h1>
+        <div>
+          <Row>
+            <Col lg={6} md={12}>
+            <div className='d-flex justify-content-center align-items-center flex-column ' style={{height:'500px'}}>
+              <img  width={'500px'} className='img-fluid' src={bookimg} alt="" />
+             
+
+            </div>
+            <div className='d-flex justify-content-center  ' >
+              
+
+            </div>
+            
+            
+            </Col>
+            <Col lg={6} md={12} >
+            <div className='d-flex justify-content-center flex-column   ' style={{height:'500px'}}>
+              <p style={{textAlign:"justify"}} className='mt-5'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident officiis qui quasi debitis numquam nulla, odio suscipit libero atque sit sunt natus asperiores magni at nostrum earum, veritatis facilis dolores?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero officiis eveniet quae ratione id dolorem aliquam consectetur impedit perspiciatis iusto culpa deleniti provident nesciunt pariatur, architecto veritatis officia distinctio magni.</p>
+              <div>
+              <Link to={'/viewbooking'}><button className='btn btn-success '>View Bookings </button></Link>
+
+              </div>
+              
+              
+
+            </div>
+            <div>
+           
+            </div>
+
+            </Col>
+            
+          </Row>
+        </div>
+      </div>
       
     </section>
 
-    <section>
-    <div className='d-flex justify-content-center mb-5 mt-5'>
+    <section id='history'>
+    <h1 className='text-center fw-bold'> <span className='text-success'>Booking</span> History</h1>
+    <div className='d-flex justify-content-center mb-5 '>
+      
     <Row>
            
               <Col sm={12} md={6}>
                 <Card style={{ width: '18rem' }} className='mt-3'>
-                  <Card.Img style={{ height: "300px" }} variant="top" src='' />
+                  <Card.Img style={{ height: "300px" }} variant="top" src={apprvimg} />
                   <Card.Body>
                     <Card.Title className='text-center'>APPROVED BOOKINGS</Card.Title>
   
                     <div className='d-flex justify-content-center'>
-                      <Link to={'/userlogin'}><Button variant="success">VIEW</Button></Link>
+                      <Link to={`/booking/history?status=${accepted}`}><Button variant="success">VIEW</Button></Link>
                       </div>
                   </Card.Body>
                 </Card>
               </Col>
               <Col sm={12} md={6} >
                 <Card style={{ width: '18rem' }} className='mt-3'>
-                  <Card.Img style={{ height: "300px" }} variant="top" src='' />
+                  <Card.Img style={{ height: "300px" }} variant="top" src={rejectimg} />
                   <Card.Body>
                     <Card.Title className='text-center'>REJECTED BOOKINGS</Card.Title>
   
                     <div className='d-flex justify-content-center '>
-                      <Link to={'/pofessionallogin'}><Button variant="success">VIEW</Button></Link>
+                      <Link to={`/booking/history?status=${rejected}`}><Button variant="success">VIEW</Button></Link>
                       </div>
                   </Card.Body>
                 </Card>

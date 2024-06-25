@@ -14,6 +14,7 @@ import Viewbooking from './pages/Professional/Viewbooking';
 import Adminhome from './pages/Admin/Adminhome';
 import Adviewworker from './pages/Admin/Adviewworker';
 import Viewusers from './pages/Admin/Viewusers';
+import Bookstatus from './pages/Professional/Bookstatus';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/profhome' element={ <Profhome/>}></Route>
         <Route path='/profile' element={ <Workerprofile/>}></Route>
         <Route path='/viewbooking' element={ <Viewbooking/>}></Route>
+        <Route path='/booking/history' element={ <Bookstatus/>}></Route>
         <Route path='/adminhome' element={ <Adminhome adhome/>}></Route>
         <Route path='/viewworker' element={ <Adviewworker/>}></Route>
         <Route path='/admin/viewusers' element={ <Viewusers/>}></Route>
