@@ -10,6 +10,7 @@ import { GetAllworkers, bookApi } from '../../services/allApi';
 import { base_url } from '../../services/baseurl';
 import empty from '../assets/nothing.jpg'
 import Swal from 'sweetalert2'
+import Header from '../../components/Header';
 
 function Bookworker(props) {
   const [modalShow, setModalShow] = useState(false);
@@ -26,8 +27,9 @@ function Bookworker(props) {
     district:"",
     description:"",
     address:"",
-    status:false,
-    workerId:""
+    
+    workerId:"",
+    status:false
  
   })
   console.log(book)
@@ -144,7 +146,10 @@ function Bookworker(props) {
 
   return (
     <>
+    <Header/>
+    <h2 className='text-center mt-5 fw-bold'>Book<span className='text-success'> {worker}</span></h2>
       <div className='d-flex justify-content-center mt-5 border-rounded' >
+      
       <input
           className='form-control w-25'
           type="text"

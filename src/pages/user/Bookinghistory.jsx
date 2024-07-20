@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import { cancelbookApi, viewbookingHistory } from '../../services/allApi';
 import Swal from 'sweetalert2'
+import Header from '../../components/Header';
 
 function Bookinghistory() {
   const [bookings, setBookings] = useState([])
@@ -60,6 +61,7 @@ function Bookinghistory() {
   }
   return (
    <>
+   <Header isUserHome={true}/>
    <h2 className='text-center mt-5 fw-bold'>Booking <span className='text-success'>History</span></h2>
    <Table striped bordered hover className='mt-3'>
       <thead>
@@ -90,7 +92,7 @@ function Bookinghistory() {
     <span className='text-info fw-bold'>Pending</span>
   ))}
 </td>
-<td>{item.status===false&&<button className='btn btn-danger' onClick={()=>deletebooking(item._id)}>Cancel</button>}</td>
+<td>{item.status===false  &&<button className='btn btn-danger' onClick={()=>deletebooking(item._id)}>Cancel</button>}</td>
         
       </tr>))
        

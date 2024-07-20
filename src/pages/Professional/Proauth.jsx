@@ -41,7 +41,7 @@ function Proauth({ proregister }) {
 
     console.log(worker)
 
-   
+
 
     const handleRegister = async (e) => {
         e.preventDefault()
@@ -104,9 +104,9 @@ function Proauth({ proregister }) {
                     text: "Login successfull",
                     icon: "success"
                 });
-                setTimeout(() => {
-                    navigate('/profhome')
-                }, 1000)
+
+                navigate('/profhome')
+
 
 
             }
@@ -126,128 +126,129 @@ function Proauth({ proregister }) {
 
     }
 
+    const sectionHeight=proregister?'180vh':'100vh'
+
 
     return (
-        <div className='workerauthentication' style={{ height: '100vh' }} >
+        <div>
+            <section style={{ height:sectionHeight }} className='background-radial-gradient overflow-hidden'>
+                <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+                    <div className="row gx-lg-5 align-items-center mb-5">
+                        <div className="col-lg-6 mb-5 mb-lg-0" style={{ zIndex: 10 }}>
+                            <h1 className="my-5 display-5 fw-bold ls-tight" style={{ color: 'hsl(218, 81%, 95%)' }}>
+                                {proregister ? 'Register as a Professional' : 'Hello Professional'}
+                                <br />
+                                <span style={{ color: 'hsl(218, 81%, 75%)' }}>{proregister ? 'Sign Up' : 'Welcome back...Please Login'}</span>
+                            </h1>
+                            <p className="mb-4 opacity-70" style={{ color: 'hsl(218, 81%, 85%)' }}>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus, expedita iusto veniam atque, magni tempora mollitia dolorum consequatur nulla, neque debitis eos reprehenderit quasi ab ipsum nisi dolorem modi. Quos?
+                            </p>
+                        </div>
+                        <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
+                            <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
+                            <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
+                            <div className="card bg-glass">
+                                <div className="card-body px-4 py-5 px-md-5">
+                                    <form>
+                                        {proregister && (
+                                            <>
+                                                <div className="form-outline mb-4">
+                                                    <label className="form-label text-light" for="name">Name</label>
+                                                    <input type="text" className="form-control " id='name' style={{ color: 'black' }} onChange={(e) => setWorker({ ...worker, name: e.target.value })} />
 
-            <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <label className="form-label text-light" for="username">Username</label>
+                                                    <input type="text" id='username' className="form-control text" style={{ color: 'black' }} onChange={(e) => setWorker({ ...worker, username: e.target.value })} />
 
-                <MDBRow>
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <label className="form-label text-light" for="city">City</label>
+                                                    <input type="text" id='city' className="form-control " style={{ color: 'black' }} onChange={(e) => setWorker({ ...worker, city: e.target.value })} />
 
-                    <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <select className="form-select" onChange={(e) => setWorker({ ...worker, district: e.target.value })}>
+                                                        <option selected disabled>Choose your district</option>
+                                                        <option value="palakkad">Palakkad</option>
+                                                        <option value="Thrissur">Thrissur</option>
+                                                        <option value="Ernakulam">Ernakulam</option>
+                                                    </select>
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <label className="form-label text-light" for="wage">Daily wage</label >
+                                                    <input id='wage' type="number" min={'0'} className="form-control " style={{color:'black'
+                                                    }} onChange={(e) => setWorker({ ...worker, dailywage: e.target.value })} />
 
-                        <img height={'600px'} width={'100%'} src={workerimg} alt="" />
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <label className="form-label text-light" for='coworkers'>Co-workers</label>
+                                                    <input id='coworkers' type="number" min={'0'} style={{ color: 'black' }} className="form-control text-dark" onChange={(e) => setWorker({ ...worker, coworkers: e.target.value })} />
 
-
-                    </MDBCol>
-
-                    <MDBCol md='6' className='position-relative'>
-
-                        <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
-                        <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
-
-                        <MDBCard className='my-5 bg-glass'>
-                            <MDBCardBody className='p-5'>
-                                {proregister && <div>
-
-                                    <MDBRow>
-                                        <MDBCol col='6'>
-                                            <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text' onChange={(e) => setWorker({ ...worker, name: e.target.value })} />
-                                        </MDBCol>
-
-                                        <MDBCol col='6'>
-                                            <MDBInput wrapperClass='mb-4' label='Username' id='form2' type='text' onChange={(e) => setWorker({ ...worker, username: e.target.value })} />
-                                        </MDBCol>
-                                    </MDBRow>
-                                    <MDBRow>
-                                        <MDBCol col='6'>
-                                            <MDBInput wrapperClass='mb-4' label='City' id='form1' type='text' onChange={(e) => setWorker({ ...worker, city: e.target.value })} />
-                                        </MDBCol>
-
-                                        <MDBCol col='6'>
-                                            {/* <MDBInput wrapperClass='mb-4' label='District' id='form2' type='text' onChange={(e) => setWorker({ ...worker, district: e.target.value })} /> */}
-                                            <select class="form-select" aria-label="Choose your district"  onChange={(e) => setWorker({ ...worker, district: e.target.value })}>
-                                                <option selected disabled >Choose your district</option>
-                                                <option value="palakkad">Palakkad</option>
-                                                <option value="Thrissur">Thrissur</option>
-                                                <option value="Ernakulam">Ernakulam</option>
-                                            </select>
-                                        </MDBCol>
-                                    </MDBRow>
-                                    <MDBRow>
-                                        <MDBCol col='6'>
-                                            <MDBInput wrapperClass='mb-4' label='Daily wage' id='form1' type='text' onChange={(e) => setWorker({ ...worker, dailywage: e.target.value })} />
-                                        </MDBCol>
-
-                                        <MDBCol col='6'>
-                                            <MDBInput wrapperClass='mb-4' label='Co workers' id='form2' type='text' onChange={(e) => setWorker({ ...worker, coworkers: e.target.value })} />
-                                        </MDBCol>
-                                    </MDBRow>
-                                    <MDBRow>
-                                        <MDBCol col='6'>
-                                            <select class="form-select" aria-label="Choose your district" onChange={(e) => setWorker({ ...worker, job: e.target.value })}>
-                                                <option selected disabled >Choose your job</option>
-                                                <option value="Plumber">Plumber</option>
-                                                <option value="Electrician">Electrician</option>
-                                                <option value="Painter">Painter</option>
-                                                <option value="Carpenter">Carpenter</option>
-                                                <option value="Pest controller">Pestcontroller</option>
-                                                <option value="Gardner">Gardner</option>
-                                            </select>
-                                        </MDBCol>
-
-                                        <MDBCol col='6'>
-                                            <MDBInput wrapperClass='mb-4' label='Phone number' id='form2' type='text' onChange={(e) => setWorker({ ...worker, phone: e.target.value })} />
-                                        </MDBCol>
-                                    </MDBRow>
-                                    {/* <MDBInput wrapperClass='mb-4' label='Username' id='form4' type='text'  /> */}
-                                </div>}
-
-                                <MDBInput wrapperClass='mb-4' label='Email' id='form3' type='email' onChange={(e) => setWorker({ ...worker, email: e.target.value })} />
-                                <MDBInput wrapperClass='mb-4' label='Password' id='form4' type='password' onChange={(e) => setWorker({ ...worker, password: e.target.value })} />
-
-                                {proregister ? <div className='d-flex justify-content-center flex-column mb-4'>
-                                    <Link className='text-center mb-2' to={'/pofessionallogin'}>Already have an account?Please SignIn</Link>
-                                    <MDBBtn className='w-100 mb-4' size='md' onClick={handleRegister}>sign up</MDBBtn>
-                                </div> :
-                                    <div className='d-flex justify-content-center mb-4 flex-column'>
-                                        <Link to={'/pofessionalregister'}>Don't have an account?Please SignUp</Link>
-                                        <MDBBtn onClick={handleLogin} className='w-100 mb-4' size='md'>sign in</MDBBtn>
-                                    </div>}
-
-
-
-                                <div className="text-center">
-
-                                    <p>or sign up with:</p>
-
-                                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                                        <MDBIcon fab icon='facebook-f' size="sm" />
-                                    </MDBBtn>
-
-                                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                                        <MDBIcon fab icon='twitter' size="sm" />
-                                    </MDBBtn>
-
-                                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                                        <MDBIcon fab icon='google' size="sm" />
-                                    </MDBBtn>
-
-                                    <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                                        <MDBIcon fab icon='github' size="sm" />
-                                    </MDBBtn>
-
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <select className="form-select" onChange={(e) => setWorker({ ...worker, job: e.target.value })}>
+                                                        <option selected disabled>Choose your job</option>
+                                                        <option value="Plumber">Plumber</option>
+                                                        <option value="Electrician">Electrician</option>
+                                                        <option value="Painter">Painter</option>
+                                                        <option value="Carpenter">Carpenter</option>
+                                                        <option value="Pest controller">Pest controller</option>
+                                                        <option value="Gardener">Gardener</option>
+                                                    </select>
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <input type="text" className="form-control text-dark" style={{color:'black'
+                                                    }} onChange={(e) => setWorker({ ...worker, phone: e.target.value })} />
+                                                    <label className="form-label text-light">Phone number</label>
+                                                </div>
+                                            </>
+                                        )}
+                                        <div className="form-outline mb-4">
+                                        <label className="form-label text-light" for='useremail'>Email</label>
+                                            <input type="email" id='useremail' className="form-control text-dark" style={{color:'black'
+                                                    }} onChange={(e) => setWorker({ ...worker, email: e.target.value })} />
+                                            
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                        <label className="form-label text-light" for='pswd'>Password</label>
+                                            <input type="password" id='pswd' className="form-control text-dark" style={{color:'black'
+                                                    }} onChange={(e) => setWorker({ ...worker, password: e.target.value })} />
+                                            
+                                        </div>
+                                        {proregister ? (
+                                            <div className='d-flex justify-content-center flex-column mb-4'>
+                                                <Link className='text-center mb-2' to={'/professionallogin'}>Already have an account? Please Sign In</Link>
+                                                <button type="button" className="btn btn-primary btn-block mb-4" onClick={handleRegister}>Sign Up</button>
+                                            </div>
+                                        ) : (
+                                            <div className='d-flex justify-content-center flex-column mb-4'>
+                                                <Link to={'/professionalregister'}>Don't have an account? Please Sign Up</Link>
+                                                <button type="button" className="btn btn-primary btn-block mb-4" onClick={handleLogin}>Sign In</button>
+                                            </div>
+                                        )}
+                                        {/* <div className="text-center">
+                                            <p className='text-light'>or sign up with:</p>
+                                            <button type="button" className="btn btn-link btn-floating mx-1 text-danger">
+                                                <i className="fab fa-facebook-f"></i>
+                                            </button>
+                                            <button type="button" className="btn btn-link btn-floating mx-1 text-danger">
+                                                <i className="fab fa-google"></i>
+                                            </button>
+                                            <button type="button" className="btn btn-link btn-floating mx-1 text-danger">
+                                                <i className="fab fa-twitter"></i>
+                                            </button>
+                                            <button type="button" className="btn btn-link btn-floating mx-1 text-danger">
+                                                <i className="fab fa-github"></i>
+                                            </button>
+                                        </div> */}
+                                    </form>
                                 </div>
-
-                            </MDBCardBody>
-                        </MDBCard>
-
-                    </MDBCol>
-
-                </MDBRow>
-
-            </MDBContainer>
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }

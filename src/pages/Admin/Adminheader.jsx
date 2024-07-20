@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logout from '../../components/Logout'
 
 function Adminheader() {
   return (
@@ -44,6 +45,7 @@ function Adminheader() {
     
 
     </div>
+    <Logout/>
    
   </div>
 </nav>

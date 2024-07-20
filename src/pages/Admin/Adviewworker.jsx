@@ -21,10 +21,7 @@ function Adviewworker() {
   console.log(approveworker)
   console.log(workers)
 
-
-
   const viewallworkers = async () => {
-
     if (sessionStorage.getItem("token")) {
       const token = sessionStorage.getItem('token')
       const reqHeader = {
@@ -32,47 +29,21 @@ function Adviewworker() {
         "Authorization": `Bearer ${token}`
       }
       const result = await allworkers(reqHeader)
-      // console.log(result.data);
-
       if (result.status === 200) {
         setWorkers(result.data)
-
-
-
       }
-
-
-
     }
-
   }
-  // console.log(workers)
+
   useEffect(() => {
     viewallworkers()
   }, [])
-
-
-
 
   const handleapprove = async (id) => {
     setApproveworker({
       status: true
     })
-
-    // if(sessionStorage.getItem("token")){
-    // const Token = sessionStorage.getItem('token')
-    // console.log(Token)
-
-    // const reqHeader = {
-    //   "Content-Type": "application/json",
-    //   "Authorization": `Bearer ${Token}`
-    // }
-    // console.log(reqHeader)
-
     const reqBody = approveworker
-
-
-
     const result = await approveworkerApi(id, reqBody)
     console.log(result.data)
     if (result.status === 200) {
@@ -85,40 +56,13 @@ function Adviewworker() {
     else {
       console.log(result.response.data)
     }
-
-    // }
-    // else{
-    //   Swal.fire({
-    //     title: "Please login to continue",
-    //     icon: "error"
-    //   }); 
-    // }
-
-
-
-
   }
 
   const handlereject = async (id) => {
     setRejectworker({
       status: false
     })
-
-
-    // if(sessionStorage.getItem("token")){
-    // const Token = sessionStorage.getItem('token')
-    // console.log(Token)
-
-    // const reqHeader = {
-    //   "Content-Type": "application/json",
-    //   "Authorization": `Bearer ${Token}`
-    // }
-    // // console.log(reqHeader)
-
     const reqBody = rejectworker
-
-
-
     const result = await approveworkerApi(id, reqBody)
     console.log(result.data)
     if (result.status === 200) {
@@ -127,33 +71,12 @@ function Adviewworker() {
         icon: "success"
       });
       viewallworkers()
-
     }
     else {
       console.log(result.response.data)
     }
-
-    // }
-    // else{
-    //   Swal.fire({
-    //     title: "Please login to continue",
-    //     icon: "error"
-    //   }); 
-    // }
-
-
-
-
   }
-
-
-
-
-
-
-
-  // console.log(approve.status)
-
+  
   return (
     <>
       <h2 className='text-center mt-5 fw-bold'>Manage <span className='text-success'>Workers</span></h2>
