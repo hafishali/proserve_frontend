@@ -61,7 +61,7 @@ function Proauth({ proregister }) {
                 // alert('Your registration is successfull')
                 Swal.fire({
                     title: "Successful",
-                    text: "Your registration is successfull",
+                    text: "Your registration is successfull please login to continue",
                     icon: "success"
                 });
                 setWorker({
@@ -71,7 +71,7 @@ function Proauth({ proregister }) {
                     password: ""
 
                 })
-                navigate('/pofessionallogin')
+                navigate('/professionallogin')
             }
             else {
                 alert(result.response.data)

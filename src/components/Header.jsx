@@ -50,13 +50,16 @@ function Header({isUserHome}) {
               <li className="nav-item">
                 <a className="nav-link text-dark" href="#ourmission">OUR MISSION</a>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item">
+                <a className="nav-link text-dark" href="#login">Login</a>
+              </li>
+              {/* <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">LOGIN</a>
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">User Login</a>
                   <a className="dropdown-item" href="#">Professional Login</a>
                 </div>
-              </li>
+              </li> */}
               </ul>
               </div>
             </>

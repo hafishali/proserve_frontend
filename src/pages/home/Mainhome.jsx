@@ -113,7 +113,7 @@ function Mainhome() {
   
         </div>
       </section>
-      <section className='mt-5'>
+      <section id='login' className='mt-5'>
         <h2 className='text-center fw-bold'>LOG <span className='text-success'>IN</span></h2>
         <div className='d-flex justify-content-center' style={{ gap: "2rem" }}>
           <Row>
