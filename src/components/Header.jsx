@@ -51,7 +51,7 @@ function Header({isUserHome}) {
                 <a className="nav-link text-dark" href="#ourmission">OUR MISSION</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-dark" href="#login">Login</a>
+                <a className="nav-link text-dark" href="#login">LOGIN</a>
               </li>
               {/* <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">LOGIN</a>
